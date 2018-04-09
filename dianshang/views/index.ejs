@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<% if(files.upload[0].path.substr(files.upload[0].path.lastIndexOf(".")).toLowerCase() == '.mp4'){ %>
+<video controls="" autoplay="" name="media">
+    <source src="<%= files.upload[0].path %>" type="video/mp4">
+</video>
+<% }else{ %>
+<img src="<%= files.upload[0].path %>"/>
+<% } %>
+</body>
+</html>

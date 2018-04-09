@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    用戶名: <input type="text" name="username" placeholder="用戶名/邮箱"><br/><br/>
+    密 码: <input type="password" name="userpassword" placeholder="password"><br/><br/>
+    图片上传：<input type="file" name="upload" multiple="multiple" onchange="preview(this)">
+    <div id="preview">
+
+    </div>
+
+    <input type="submit" value="提交">
+</form>
+<script>
+    function preview(file) {
+        var FileType = file.value.substr(file.value.lastIndexOf(".")).toLowerCase();
+
+        var prevDiv = document.getElementById('preview');
+
+
+        if ( FileType == '.jpg' ) {
+            if ( file.files && file.files[0] ) {
+                var reader = new FileReader();
+                reader.onload = function (evt) {
+                    prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+                }
+                reader.readAsDataURL(file.files[0]);
+            } else {
+                prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+            }
+        } else if ( FileType == '.mp4' ) {
+            if ( file.files && file.files[0] ) {
+                var reader = new FileReader();
+                console.log(file)
+                reader.onload = function (evt) {
+                    prevDiv.innerHTML = '<video controls="" autoplay="" name="media">\n' +
+                        '    <source src="' + evt.target.result + '" type="video/mp4">\n' +
+                        '</video>';
+                }
+                reader.readAsDataURL(file.files[0]);
+            }
+        }
+    }
+</script>
+</body>
+</html>

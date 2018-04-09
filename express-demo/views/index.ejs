@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+<body>
+<!-- 可以引入公共的头部 -->
+<%- include header.ejs%>
+<ul>
+    <% for (var i = 0;i < list.length;i++){ %>
+    <li><%= list[i] %></li>
+    <% } %>
+</ul>
+
+<img src="/images/1.jpg" alt="鲜花">
+<img src="/static/images/1.jpg" alt="鲜花">
+
+</body>
+</html>
+
+
